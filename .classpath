@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/craftbukkit-1.11.jar"/>
+	<classpathentry kind="lib" path="lib/CustomMobs-4.17.jar"/>
+	<classpathentry kind="lib" path="lib/Quests-3.6.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
