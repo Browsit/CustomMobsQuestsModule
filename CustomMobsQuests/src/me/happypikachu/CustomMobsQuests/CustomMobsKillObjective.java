@@ -1,5 +1,5 @@
 /*******************************************************************************************************
- * Version 1.0 authored by FlyingPikachu/HappyPikachu. All rights reserved.
+ * Authored by FlyingPikachu/HappyPikachu. All rights reserved.
  * 
  * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
@@ -24,44 +24,41 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class CustomMobsKillObjective extends CustomObjective implements Listener {
-  private static Quests quests = (Quests) Bukkit.getServer().getPluginManager().getPlugin("Quests");
-  
-  public CustomMobsKillObjective() {
-    setName("Kill CustomMobs Objective");
-    setAuthor("HappyPikachu");
-    setEnableCount(true);
-    setShowCount(true);
-    addData("objName");
-    addDescription("objName", "Set a name for the objective");
-    addData("killNames");
-    addDescription("killNames", "Enter CustomMobs names, separating each one by a comma");
-    setCountPrompt("Set the amount of CustomMobs to kill");
-    setDisplay("Kill %objName%: %count%");
-  }
-  
-  @EventHandler
-  public void on(CustomMobDeathEvent event) {
-    Player killer = event.getKiller();
-    Quester quester = quests.getQuester(killer.getUniqueId());
-    if (quester == null) {
-      return;
-    }
-    String mobName = event.getMob().getName();
-    for (Quest q : quester.currentQuests.keySet()) {
-      Map<String, Object> datamap = getDatamap(killer, this, q);
-      if (datamap != null) {
-        String mobNames = (String)datamap.getOrDefault("killNames", null);
-        if (mobNames == null) {
-          return;
-        }
-        String[] spl = mobNames.split(",");
-        for (String str : spl) {
-          if ((str != null) && (mobName.equalsIgnoreCase(str))) {
-            incrementObjective(killer, this, 1, q);
-            return;
-          }
-        }
-      }
-    }
-  }
+	private static Quests quests = (Quests) Bukkit.getServer().getPluginManager().getPlugin("Quests");
+	
+	public CustomMobsKillObjective() {
+		setName("Kill CustomMobs Objective");
+		setAuthor("HappyPikachu");
+		setShowCount(true);
+		addStringPrompt("Obj Name", "Set a name for the objective", "CustomMobs");
+		addStringPrompt("Kill Names", "Enter CustomMobs names, separating each one by a comma", null);
+		setCountPrompt("Set the amount of CustomMobs to kill");
+		setDisplay("Kill %Obj Name%: %count%");
+	}
+	
+	@EventHandler
+	  public void onCustomMobDeath(CustomMobDeathEvent event) {
+		  Player killer = event.getKiller();
+		  Quester quester = quests.getQuester(killer.getUniqueId());
+		  if (quester == null) {
+			  return;
+		  }
+		  String mobName = event.getMob().getName();
+		  for (Quest q : quester.getCurrentQuests().keySet()) {
+			  Map<String, Object> datamap = getDataForPlayer(killer, this, q);
+			  if (datamap != null) {
+				  String mobNames = (String)datamap.getOrDefault("killNames", null);
+				  if (mobNames == null) {
+					  return;
+				  }
+				  String[] spl = mobNames.split(",");
+				  for (String str : spl) {
+					  if ((str != null) && (mobName.equalsIgnoreCase(str))) {
+						  incrementObjective(killer, this, 1, q);
+						  return;
+					  }
+				  }
+			  }
+		  }
+	  }	
 }
