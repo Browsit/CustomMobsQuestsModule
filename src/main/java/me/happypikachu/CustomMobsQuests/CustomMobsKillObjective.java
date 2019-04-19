@@ -31,7 +31,7 @@ public class CustomMobsKillObjective extends CustomObjective implements Listener
 		setAuthor("HappyPikachu");
 		setShowCount(true);
 		addStringPrompt("Obj Name", "Set a name for the objective", "CustomMobs");
-		addStringPrompt("Kill Names", "Enter CustomMobs names, separating each one by a comma", null);
+		addStringPrompt("Kill Names", "Enter CustomMobs names, separating each one by a comma", "ANY");
 		setCountPrompt("Set the amount of CustomMobs to kill");
 		setDisplay("Kill %Obj Name%: %count%");
 	}
@@ -47,7 +47,7 @@ public class CustomMobsKillObjective extends CustomObjective implements Listener
 		  for (Quest q : quester.getCurrentQuests().keySet()) {
 			  Map<String, Object> datamap = getDataForPlayer(killer, this, q);
 			  if (datamap != null) {
-				  String mobNames = (String)datamap.getOrDefault("killNames", null);
+				  String mobNames = (String)datamap.getOrDefault("Kill Names", "ANY");
 				  if (mobNames == null) {
 					  return;
 				  }
