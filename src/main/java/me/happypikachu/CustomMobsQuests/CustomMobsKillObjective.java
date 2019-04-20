@@ -30,10 +30,10 @@ public class CustomMobsKillObjective extends CustomObjective implements Listener
 		setName("Kill CustomMobs Objective");
 		setAuthor("HappyPikachu");
 		setShowCount(true);
-		addStringPrompt("Obj Name", "Set a name for the objective", "CustomMobs");
+		addStringPrompt("Obj Name", "Set a name for the objective", "Kill CustomMob");
 		addStringPrompt("Kill Names", "Enter CustomMobs names, separating each one by a comma", "ANY");
 		setCountPrompt("Set the amount of CustomMobs to kill");
-		setDisplay("Kill %Obj Name%: %count%");
+		setDisplay("%Obj Name% %Kill Names%: %count%");
 	}
 	
 	@EventHandler
@@ -53,7 +53,7 @@ public class CustomMobsKillObjective extends CustomObjective implements Listener
 				  }
 				  String[] spl = mobNames.split(",");
 				  for (String str : spl) {
-					  if ((str != null) && (mobName.equalsIgnoreCase(str))) {
+					  if (str.equals("ANY") || mobName.equalsIgnoreCase(str)) {
 						  incrementObjective(killer, this, 1, q);
 						  return;
 					  }
