@@ -28,9 +28,9 @@ public class CustomMobsKillObjective extends CustomObjective implements Listener
         setAuthor("PikaMug");
 		setItem("STONE_SWORD", (short)0);
         setShowCount(true);
-        addStringPrompt("CM Kill Obj", "Set a name for the objective", "Kill CustomMob");
+        addStringPrompt("CM Kill Obj", "Set a name for the objective", "Kill custom mob");
         addStringPrompt("CM Kill Name", "Enter custom mob names, separating each one by a comma", "ANY");
-        setCountPrompt("Set the amount of CustomMobs to kill");
+        setCountPrompt("Set the amount of custom mobs to kill");
         setDisplay("%CM Obj Name% %CM Kill Name%: %count%");
     }
     
