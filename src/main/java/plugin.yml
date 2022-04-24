@@ -1,8 +1,8 @@
 name: CustomMobsQuests
-version: 1.4
+version: 1.5
 description: Quests module for CustomMobs
-author: HappyPikachu
-website: https://www.spigotmc.org/resources/custommobs-quests-module.56686/
+author: PikaMug
+website: https://github.com/PikaMug/CustomMobsQuestsModule
 
-main: me.happypikachu.CustomMobsQuests
+main: me.pikamug.customMobsQuests
 depend: [CustomMobs, Quests]
