@@ -4,5 +4,5 @@ description: Quests module for CustomMobs
 author: PikaMug
 website: https://github.com/PikaMug/CustomMobsQuestsModule
 
-main: me.pikamug.customMobsQuests
+main: me.pikamug.custommobsquests
 depend: [CustomMobs, Quests]
