@@ -13,15 +13,16 @@
 package me.pikamug.custommobsquests;
 
 import de.hellfirepvp.api.event.CustomMobDeathEvent;
-import java.util.Map;
-import me.blackvein.quests.CustomObjective;
-import me.blackvein.quests.Quest;
-import me.blackvein.quests.Quester;
+import me.pikamug.quests.module.BukkitCustomObjective;
+import me.pikamug.quests.player.Quester;
+import me.pikamug.quests.quests.Quest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class CustomMobsKillObjective extends CustomObjective implements Listener {
+import java.util.Map;
+
+public class CustomMobsKillObjective extends BukkitCustomObjective implements Listener {
     
     public CustomMobsKillObjective() {
         setName("CustomMobs Kill Mobs Objective");
@@ -43,7 +44,7 @@ public class CustomMobsKillObjective extends CustomObjective implements Listener
 		}
         final String mobName = event.getMob().getName();
 		for (final Quest q : quester.getCurrentQuests().keySet()) {
-			final Map<String, Object> datamap = getDataForPlayer(killer, this, q);
+			final Map<String, Object> datamap = getDataForPlayer(killer.getUniqueId(), this, q);
 			if (datamap != null) {
 				final String mobNames = (String)datamap.getOrDefault("CM Kill Name", "ANY");
 				if (mobNames == null) {
@@ -52,7 +53,7 @@ public class CustomMobsKillObjective extends CustomObjective implements Listener
 				final String[] spl = mobNames.split(",");
 				for (final String str : spl) {
 					if (str.equals("ANY") || mobName.equalsIgnoreCase(str)) {
-						incrementObjective(killer, this, 1, q);
+						incrementObjective(killer.getUniqueId(), this, q, 1);
 						return;
 					}
 				}

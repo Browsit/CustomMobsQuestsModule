@@ -12,7 +12,7 @@
 
 package me.pikamug.custommobsquests;
 
-import me.blackvein.quests.Quests;
+import me.pikamug.quests.BukkitQuestsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,11 +22,11 @@ import java.util.AbstractMap;
 import java.util.Map;
 
 public class CustomMobsModule extends JavaPlugin {
-    private static final Quests quests = (Quests) Bukkit.getServer().getPluginManager().getPlugin("Quests");
+    private static final BukkitQuestsPlugin quests = (BukkitQuestsPlugin) Bukkit.getServer().getPluginManager().getPlugin("Quests");
     private static final String moduleName = "CustomMobs Quests Module";
     private static final Map.Entry<String, Short> moduleItem = new AbstractMap.SimpleEntry<>("SKULL_ITEM", (short)2);
 
-    public static Quests getQuests() {
+    public static BukkitQuestsPlugin getQuests() {
         return quests;
     }
 
