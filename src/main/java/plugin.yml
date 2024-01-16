@@ -1,8 +1,8 @@
 name: CustomMobsQuests
-version: 2.0
+version: 2.1
 description: Quests module for CustomMobs
-author: PikaMug
-website: https://github.com/PikaMug/CustomMobsQuestsModule
+author: Browsit
+website: https://github.com/Browsit/CustomMobsQuestsModule
 
-main: me.pikamug.custommobsquests
+main: org.browsit.custommobsquests.CustomMobsModule
 depend: [CustomMobs, Quests]
